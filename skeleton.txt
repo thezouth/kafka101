@@ -1,0 +1,55 @@
+Kafka101
+
+- data integration << I heart log
+many to many 
+
+>> loose coupling
+>> reliability
+- history - linkedin
+
+- simple Kafka architecture 
+- topic
+- partition
+- replication
+
+
+- console-consumer
+- console-producer
+
+
+- create your own producer (Java)
+- create your own consumer
+
+- partition and scaling producer
+client
+1. add more thread
+2. add more producer
+server
+1. add more disk
+2. add more broker node
+
+
+- consumer & consumer-group
+1. partition
+
+
+- kafka internal (partition, replication, broker, compression)
+- Scaling
+- HA
+
+- stream processing
+- handle burst messages
+
+1. do you have case to have many cluster?
+1.1 yes -> do you want to replicate topic between cluster -> yes -> kafka-mirror
+
+- message serialiser & schema registry (JSON, AVRO)
+
+- capacity planning (compute, network, storage)
+
+
+- Summary
+1 service bus
+2 activities log for analytic
+3 event log for monitoring
+
