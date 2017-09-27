@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Kafka 101</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.5.0/css/reveal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.5.0/css/theme/black.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.5.0/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.5.0/css/print/pdf.css' : 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.5.0/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <style>
+      .reveal section img {
+        background:none;
+        border:none;
+        box-shadow:none;
+      }
+      .slides .footnote {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        font-size: 30%;
+        text-align: center;
+      }
+      .slides table.footer td {
+        border: none;
+        text-align: center;
+        font-size: 30%;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-background="white">
+          <img width="500" src="images/kafka_logo.png">
+          <div>
+            <table class="footer">
+              <tr>
+                <td><img width="60" src="images/webscal3r_logo.png"><br>webscal3r.club</td>
+                <td><img width="300" src="images/sprint3r-cover.png"><br>sprint3r.com</td>
+                <td><img width="60" src="images/zouth_logo.png"><br>the Zouth Team</td>
+              </tr>
+            </table>
+          </div>
+        </section>
+
+        <section data-markdown
+          data-separator="^----\n$"
+          data-separator-vertical="^--\n$"
+          data-separator-notes="^Note:"
+          data-attributes="--attr=(.*?)$">
+          <script type="text/template">
+            ### What's covered ###
+
+            - 
+
+            --
+
+            ### What's not covered ###
+
+            - 
+
+            ----
+
+            ### Target Audiences ###
+
+            --
+
+
+            Basic skill in Unix environment
+
+              *Use SSH to connect remote host* <!-- .element: class="fragment" -->
+
+              *Manage with files on Linux server* <!-- .element: class="fragment" -->
+
+          </script>
+        </section>
+
+        <section data-markdown
+          data-separator="^----\n$"
+          data-separator-vertical="^--\n$"
+          data-separator-notes="^Note:"
+          data-attributes="--attr=(.*?)$">
+          <script type="text/template">
+             ###
+
+          </script>
+        </section>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.5.0/lib/js/head.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.5.0/js/reveal.js"></script>
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+        slideNumber: 'c/t',
+        history: true,
+        dependencies: [
+          { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.5.0/plugin/markdown/marked.js' },
+          { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.5.0/plugin/markdown/markdown.js' },
+          { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.5.0/plugin/notes/notes.js', async: true },
+          { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.5.0/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+    </script>
+  </body>
+</html>
