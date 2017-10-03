@@ -202,13 +202,6 @@
           data-separator-notes="^Note:"
           data-attributes="--attr=(.*?)$">
           <script type="text/template">
-<<<<<<< HEAD
-            ### Overview ###
-
-            <img src="images/kafka_overview.png" width="600">
-
-            ----
-
             ### Architecture Evolution ###
 
             <img src="images/arch_evo01.png" width="400">
@@ -230,8 +223,49 @@
             <img src="images/arch_evo05.png" width="500">
 
             ----
-=======
->>>>>>> 2c4d6e454aaafa3d07e971aa12143c13e8f1bfef
+
+            ### Kafka Overview ###
+
+            <img src="images/kafka_overview.png" width="400">
+            - Kafka Nodes also called Kafka Brokers
+            - Producers push messages to topics
+            - Consumers pull messages from topics
+
+            ----
+
+            ### Topic & Partition ###
+            <img src="images/topic_anatomy.png" width="500">
+
+            - Topic is message stream
+            - Partitions distributed among brokers
+
+            ----
+
+            #### Replication ####
+            <img src="images/kafka_replication.jpg" width="500">
+
+            - one replica is leader
+            - all writes go to leader
+            - leader propagates writes to followers
+
+            ----
+
+            - decouple processing from data producers
+            - partitioning
+            - replication
+            - fault tolerance
+            - durable
+
+
+            ----
+
+            ### Planning ###
+
+            - Message Retention -> Disk Size
+            - Client Throughput -> Network Capacity
+            - Producer Throghput -> Disk I/O
+            - Consumer Throghput -> Memory
+
 
           </script>
         </section>
