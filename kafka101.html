@@ -88,6 +88,111 @@
 
               *Manage with files on Linux server* <!-- .element: class="fragment" -->
 
+            ----
+
+            ## Action characteristics
+            - Time to response
+            - Event by event / Batch preferred
+            - Request - Reply / Answer me later / Fire and forget
+            - Everything's precious / Missing some is fine
+            - Scalable degree
+            - Failure handling
+
+            ----
+            
+            ## Lab 01 Simple Producer
+            
+            - Create a topic `sentence`.
+            - Produce from the given file (one sentence per message) into `sentence` topic.
+
+            --
+
+            ### Learning objective
+            - Simple producer config: <i>bootstrap.servers, linger.ms, batch.size</i>
+            - Producer is async and periodically flush.
+            - Balance between latency 'n throughput
+
+            ----
+
+            ## Lab 02 Simple Consumer
+
+            - Consume sentence from `sentence` topic and append each sentence into a file with arrival time
+               ```
+               2017-09-01T10:23:02 The quick brown fox jumps over the lazy dog 
+               2017-09-01T10:23:03 Now is the time for all good men to come to the aid of the party
+               ```
+            - Check consumer lack to see its performance.
+            - Add more consumer node to work together.
+
+            --
+
+            ## Learning objective
+            - Simple consumer -> poll/commit
+            - Consumer group
+            - Offest -> When no offset, when restart process, when more consumer.
+            - Partition
+            
+            ----
+
+            ## Lab 03 Where's `Watson`
+            - Filter sentence containing `Watson` and produce into `found-watson'
+            - Add more word to filter `Doctor`, `dr`, `John`
+            
+            --
+
+            ## Learning objective
+
+            - Enrich message with external data source.
+            - Event as topic.
+            - [Get an idea] for refersh external data source.
+
+            ----
+            
+            ### Lab 04 Word count
+
+
+            `Now is the time for all good men to come to the aid of the party` 
+            
+            now -> 1 <br />
+            is -> 1 <br />
+            the -> 3 <br />
+            ...
+
+            `The quick brown fox jumps over the lazy dog`
+
+            the -> 5 <br />
+            quick -> 1 <br />
+            brown -> 1 <br />
+            ...
+
+            --
+
+            ## Extend consumers
+
+            Map
+            
+            now -> 1 &nbsp;  &nbsp;  &nbsp; the -> 2 <br />
+            is -> 1 &nbsp;  &nbsp;  &nbsp; quick -> 1 <br />
+            the -> 3 &nbsp;  &nbsp;  &nbsp; brown -> 1 <br />
+
+            Reduce
+
+            the, 3 + the, 2 -> the, 5 <br />
+            now, 1 -> now, 1
+
+            ...
+
+            --
+
+            State -> Stealth
+
+            --
+
+            ### Learning objective
+
+            - Key + Partition
+            - [Get Idea] stateful aggregation.
+
           </script>
         </section>
 
@@ -97,6 +202,7 @@
           data-separator-notes="^Note:"
           data-attributes="--attr=(.*?)$">
           <script type="text/template">
+<<<<<<< HEAD
             ### Overview ###
 
             <img src="images/kafka_overview.png" width="600">
@@ -124,6 +230,8 @@
             <img src="images/arch_evo05.png" width="500">
 
             ----
+=======
+>>>>>>> 2c4d6e454aaafa3d07e971aa12143c13e8f1bfef
 
           </script>
         </section>
