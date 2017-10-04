@@ -1,0 +1,1 @@
+/opt/kafka/bin/kafka-topics.sh --zookeeper 192.168.0.44:2181 --topic sentence --create --partitions 6 --replication-factor 1
