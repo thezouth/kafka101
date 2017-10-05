@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class WordCountTest {
     @Test
-    public void initialCount() {
+    public void countTheFirstSentence() {
         String sentence = "A man who fall in a hole";
         Map<String, Long> actual = new WordCount().count(sentence);
 
@@ -25,7 +25,7 @@ public class WordCountTest {
     }
 
     @Test
-    public void streamCount() {
+    public void countMultipleTimes() {
         WordCount counter = new WordCount();
 
         counter.count("A man who fall in a hole");

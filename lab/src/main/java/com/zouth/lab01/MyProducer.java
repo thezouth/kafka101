@@ -33,9 +33,6 @@ public class MyProducer {
         props.put("key.serializer", StringSerializer.class);
         props.put("value.serializer", StringSerializer.class);
 
-        props.put("lingers.ms", 50);
-        props.put("batch.size", 1000);
-
         return new KafkaProducer<>(props);
     }
 

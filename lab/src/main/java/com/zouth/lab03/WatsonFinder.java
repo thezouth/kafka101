@@ -1,6 +1,7 @@
 package com.zouth.lab03;
 
 
+import com.zouth.KafkaUtil;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
@@ -27,36 +28,39 @@ public class WatsonFinder {
         this.inputTopic = inputTopic;
         this.outputTopic = outputTopic;
 
-        this.consumer = createConsumer(groupId.orElse("find-watson"));
-        this.producer = createProducer();
+        this.consumer = KafkaUtil.createConsumer(groupId.orElse("find-watson"));
+        this.producer = KafkaUtil.createProducer();
     }
 
     public void run() {
+        logger.info("Listen to " + this.inputTopic);
         this.consumer.subscribe(List.of(this.inputTopic));
+        logger.info("Start finding Watson");
 
         try {
             while(true) {
                 ConsumerRecords<String, String> records = this.consumer.poll(1000);
-                Stream<ConsumerRecord<String, String>> recordStream = StreamSupport.stream(
-                        Spliterators.spliteratorUnknownSize(records.iterator(), Spliterator.NONNULL),
-                        false);
 
-                recordStream.filter(this::filterWatson)
-                            .forEach(this::produceOutput);
+                records.iterator().forEachRemaining((record) -> {
+                    if (this.filterWatson(record))
+                        this.produceOutput(record);
+                });
 
                 this.producer.flush();
             }
         } finally {
+            logger.info("Process done, closing all Closable");
             this.consumer.close();
             this.producer.close();
+            logger.info("Ready to be terminated.");
         }
     }
 
 
-    private final static String[] possibleWatsons = {"Watson", "Doctor", "Dr", "John"};
+    private final static String[] possibleWatson = {"Watson", "Doctor", "Dr", "John"};
 
     private boolean filterWatson(ConsumerRecord<String, String> record) {
-        for (String watson : possibleWatsons) {
+        for (String watson : possibleWatson) {
             if (record.value().contains(watson))
                 return true;
         }
@@ -81,31 +85,6 @@ public class WatsonFinder {
         Optional<String> groupId = args.length >= 3 ? Optional.of(args[2]) : Optional.empty();
 
         new WatsonFinder(inputTopic, outputTopic, groupId).run();
-    }
-
-    private KafkaConsumer<String, String> createConsumer(String groupId) {
-        Properties props = new Properties();
-        props.put("bootstrap.servers", "192.168.0.44:9092");
-        props.put("group.id", groupId);
-        props.put("key.deserializer", StringDeserializer.class);
-        props.put("value.deserializer", StringDeserializer.class);
-
-        props.put("auto.offset.reset", "earliest");
-        props.put("enable.auto.commit", false);
-
-        return new KafkaConsumer<>(props);
-    }
-
-    public static KafkaProducer<String, String> createProducer() {
-        Properties props = new Properties();
-        props.put("bootstrap.servers", "localhost:9092");
-        props.put("key.serializer", StringSerializer.class);
-        props.put("value.serializer", StringSerializer.class);
-
-        props.put("lingers.ms", 50);
-        props.put("batch.size", 1000);
-
-        return new KafkaProducer<>(props);
     }
 
 }

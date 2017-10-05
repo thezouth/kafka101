@@ -22,7 +22,7 @@ public class WordCountReducer {
         this.inTopic = inTopic;
         this.outTopic = outTopic;
 
-        this.consumer = KafkaUtil.createConsumer(groupId.orElse("word-count-mapper"));
+        this.consumer = KafkaUtil.createConsumer(groupId.orElse("word-count-reducer"));
         this.producer = KafkaUtil.createProducer();
     }
 

@@ -10,13 +10,13 @@ import java.util.Properties;
 public class KafkaUtil {
     public static KafkaConsumer<String, String> createConsumer(String groupId) {
         Properties props = new Properties();
-        props.put("bootstrap.servers", "192.168.0.44:9092");
+        props.put("bootstrap.servers", "localhost:9092");
         props.put("group.id", groupId);
         props.put("key.deserializer", StringDeserializer.class);
         props.put("value.deserializer", StringDeserializer.class);
 
         props.put("auto.offset.reset", "earliest");
-        props.put("enable.auto.commit", false);
+        props.put("enable.auto.commit", true);
 
         return new KafkaConsumer<>(props);
     }

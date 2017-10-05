@@ -40,12 +40,11 @@ public class BasicConsumer {
         try {
             while (true) {
                 ConsumerRecords<String, String> records = this.consumer.poll(1000);
-                Stream<ConsumerRecord<String, String>> recordStream = StreamSupport.stream(
-                        Spliterators.spliteratorUnknownSize(records.iterator(), Spliterator.ORDERED),
-                        false);
 
-                recordStream.map(this::formatMessage)
-                            .forEach(this::writeMessage);
+                records.iterator().forEachRemaining((record) -> {
+                    String logLine = this.format(record);
+                    this.writeToOutputFile(logLine);
+                });
 
                 this.outputWriter.flush();
                 this.consumer.commitSync();
@@ -72,7 +71,7 @@ public class BasicConsumer {
 
     private KafkaConsumer<String, String> createConsumer(String groupId) {
         Properties props = new Properties();
-        props.put("bootstrap.servers", "192.168.0.44:9092");
+        props.put("bootstrap.servers", "localhost:9092");
         props.put("group.id", groupId);
         props.put("key.deserializer", StringDeserializer.class);
         props.put("value.deserializer", StringDeserializer.class);
@@ -83,7 +82,7 @@ public class BasicConsumer {
         return new KafkaConsumer<>(props);
     }
 
-    private void writeMessage(String message) {
+    private void writeToOutputFile(String message) {
         try {
             this.outputWriter.write(message);
         } catch (IOException ioEx) {
@@ -91,7 +90,7 @@ public class BasicConsumer {
         }
     }
 
-    private String formatMessage(ConsumerRecord<String, String> record) {
+    private String format(ConsumerRecord<String, String> record) {
         return formatTimestamp(record.timestamp())
                 + " | " + record.partition()
                 + " | " + record.value() + "\n";

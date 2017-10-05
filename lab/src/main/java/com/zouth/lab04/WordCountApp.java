@@ -8,7 +8,6 @@ import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 
 import java.util.*;
-import java.util.stream.StreamSupport;
 
 public class WordCountApp {
     private KafkaConsumer<String, String> consumer;
@@ -42,20 +41,21 @@ public class WordCountApp {
     }
 
     private void aggregate(ConsumerRecord<String, String> record) {
-        String sentence = record.value();
-        Map<String, Long> count = this.counter.count(sentence);
+        final String sentence = record.value();
+        final Map<String, Long> count = this.counter.count(sentence);
         count.forEach(this::produceResult);
     }
 
     private void produceResult(String word, long count) {
-        ProducerRecord<String, String> record = new ProducerRecord<>(this.outTopic, word, Long.toString(count));
+        final ProducerRecord<String, String> record =
+                new ProducerRecord<>(this.outTopic, word, Long.toString(count));
         this.producer.send(record);
     }
 
     public static void main(String[] args) {
-        String inputTopic = args[0];
-        String outputTopic = args[1];
-        Optional<String> groupId = args.length >= 3 ? Optional.of(args[2]) : Optional.empty();
+        final String inputTopic = args[0];
+        final String outputTopic = args[1];
+        final Optional<String> groupId = args.length >= 3 ? Optional.of(args[2]) : Optional.empty();
 
         new WordCountApp(inputTopic, outputTopic, groupId).run();
     }
