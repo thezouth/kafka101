@@ -238,6 +238,13 @@
 
             - Topic is message stream
             - Partitions distributed among brokers
+            - All data persistent
+
+            --
+
+            ### Partition ###
+
+            - Messages strictly ordered
 
             ----
 
@@ -248,6 +255,33 @@
             - all writes go to leader
             - leader propagates writes to followers
 
+            --
+
+            <img src="images/replication_lag.jpg" width="500">
+
+            --
+
+            ### Consumer ###
+            <img src="images/consumer_groups.png" width="500">
+
+            ----
+
+            ### Scaling ###
+
+            <img src="images/kafka_simple.png" width="500">
+
+            --
+
+            <img src="images/kafka_multi_producer.png" width="500">
+
+            --
+
+            <img src="images/kafka_multi_producer_broker.png" width="500">
+
+            --
+
+            <img src="images/kafka_multi_producer_broker_consumer.png" width="500">
+
             ----
 
             - decouple processing from data producers
@@ -256,6 +290,32 @@
             - fault tolerance
             - durable
 
+
+            ----
+
+            ### Configuration ###
+
+            --
+
+            #### Durability ####
+            - RF = 3
+            - min.insync.replica = 2
+            - unclean.leader.election.enable = false
+            - acks = all
+            - block.on.buffer.full = true
+            - reties = Integer.MAX_VALUE
+
+            --
+
+            #### Low latency ####
+            - increase num.replica.fetchers
+            - max.block.ms = 0
+            - decrease linger.ms
+
+            --
+
+            #### Ordering ####
+            - max.inflight.requests = 1
 
             ----
 
