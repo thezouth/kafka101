@@ -39,13 +39,13 @@ public class BasicConsumer {
         logger.info("Start write a file.");
         try {
             while (true) {
-                ConsumerRecords<String, String> records = this.consumer.poll(100);
+                ConsumerRecords<String, String> records = this.consumer.poll(1000);
                 Stream<ConsumerRecord<String, String>> recordStream = StreamSupport.stream(
                         Spliterators.spliteratorUnknownSize(records.iterator(), Spliterator.ORDERED),
                         false);
 
                 recordStream.map(this::formatMessage)
-                        .forEach(this::writeMessage);
+                            .forEach(this::writeMessage);
 
                 this.outputWriter.flush();
                 this.consumer.commitSync();

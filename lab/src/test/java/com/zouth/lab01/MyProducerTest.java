@@ -9,9 +9,9 @@ import java.util.stream.Collectors;
 
 public class MyProducerTest {
     @Test
-    @DisplayName("Split paragraph to sentence by `.,?”'`")
+    @DisplayName("Split paragraph to sentence by `.?”'`")
     public void paragraphToSentenceWithDot() {
-        String paragraph = "You make too much of a trifle,” said I. “May I ask\n" +
+        String paragraph = "You make too much of a trifle” said I. “May I ask\n" +
                 "how you knew who I was?”";
 
         List<String> expected = List.of(
