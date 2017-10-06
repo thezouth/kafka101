@@ -1,39 +1,14 @@
 package com.zouth.lab01;
 
-import org.apache.kafka.clients.producer.KafkaProducer;
-import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.common.serialization.StringSerializer;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
-import java.util.Properties;
 import java.util.stream.Stream;
 
 
 public class MyProducer {
     public static void main(String[] args) throws IOException {
-        String topic = args[0];
-        String target = args[1];
-
-        KafkaProducer<String, String> producer = createProducer();
-
-        readSource(target).forEach((sentence) -> {
-            ProducerRecord<String, String> message = new ProducerRecord<>(topic, sentence);
-            producer.send(message);
-        });
-
-        producer.flush();
-        producer.close();
-    }
-
-    public static KafkaProducer<String, String> createProducer() {
-        Properties props = new Properties();
-        props.put("bootstrap.servers", "localhost:9092");
-        props.put("key.serializer", StringSerializer.class);
-        props.put("value.serializer", StringSerializer.class);
-
-        return new KafkaProducer<>(props);
+        throw new UnsupportedOperationException("D.I.Y. Method");
     }
 
     static Stream<String> readSource(String sourceName) throws IOException {
