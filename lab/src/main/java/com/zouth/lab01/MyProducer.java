@@ -47,7 +47,8 @@ public class MyProducer {
     }
 
     static Stream<String> splitText(String text) {
-        String noNewLine = text.replaceAll("[\n,]", " ");
+        String noNewLine = text.replaceAll("\n", " ")
+                               .replaceAll(",", "");
         return Arrays.stream(noNewLine.split("[.?”“'`]"))
                 .map(String::trim)
                 .filter((sentence) -> sentence.length() > 0);

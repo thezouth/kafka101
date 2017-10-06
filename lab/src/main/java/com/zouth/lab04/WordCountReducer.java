@@ -8,7 +8,6 @@ import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 
 import java.util.*;
-import java.util.stream.StreamSupport;
 
 public class WordCountReducer {
     private KafkaConsumer<String, String> consumer;
