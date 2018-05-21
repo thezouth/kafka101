@@ -1,0 +1,17 @@
+{
+  "name": "kafka-101-nodejs",
+  "version": "1.0.0",
+  "description": "Source code for kafka 101 class in NodeJS language",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "nodemailer": "^4.6.4",
+    "promise-node-rdkafka": "^0.1.0"
+  }
+}
