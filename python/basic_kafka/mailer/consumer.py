@@ -16,7 +16,7 @@ consumer = Consumer({
 consumer.subscribe(['send-mail'])
 
 try:
-    while(True):
+    while True:
         kafka_msg = consumer.poll(1)
         
         if kafka_msg:

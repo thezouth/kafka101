@@ -3,6 +3,8 @@ from confluent_kafka import Producer
 def delivery_callback(err, msg):
     if err:
         print('delivery fail {err}')
+    else:
+        print('producer at {msg.offset}')
 
 
 def main():
