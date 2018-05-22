@@ -15,7 +15,7 @@ def main():
 
     producer = Producer(conf)
 
-    producer.produce(topic, 'hello')
+    producer.produce(topic, 'hello', callback=delivery_callback)
     producer.flush()
 
 if __name__ == '__main__':
