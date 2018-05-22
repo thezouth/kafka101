@@ -19,7 +19,7 @@ async def mailto(request, email):
         return response.json({'email': email, 'text': text})
     else:
         return response.json(
-            { 'error': 'Blank Message' },
+            {'error': 'Blank Message'},
             status=400
         )
 

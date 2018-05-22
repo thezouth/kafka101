@@ -1,7 +1,8 @@
 from asyncio import Future
-from confluent_kafka import Producer
-import logging
 import json
+import logging
+
+from confluent_kafka import Producer
 
 TOPIC = 'send-mail'
 BOOTSTRAP_SERVERS = 'kafka:9092'
@@ -17,7 +18,7 @@ def callback(future: Future):
             future.set_exception(err)
         else:
             future.set_result(msg)
-    
+
     return __callback
 
 
@@ -29,7 +30,8 @@ async def produce(email: str, subject: str, text: str):
         text=text
     ))
 
-    producer.produce(TOPIC, message.encode(), 
+    producer.produce(
+        TOPIC, message.encode(), 
         key=email.encode(), callback=callback(future))
 
     result = await future

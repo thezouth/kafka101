@@ -1,4 +1,3 @@
-from contextlib import suppress
 import json
 
 from confluent_kafka import Consumer
@@ -18,7 +17,7 @@ consumer.subscribe(['send-mail'])
 try:
     while True:
         kafka_msg = consumer.poll(1)
-        
+
         if kafka_msg:
             msg_value = json.loads(kafka_msg.value().decode('UTF-8'))
             send_mail(msg_value['email'], msg_value['subject'], msg_value['text'])
